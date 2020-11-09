@@ -9,14 +9,15 @@ import { User } from '@app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private userSubject: BehaviorSubject<User>;
+    private userSubject: BehaviorSubject<User>; 
     public user: Observable<User>;
 
     constructor(
         private router: Router,
         private http: HttpClient
-    ) {
-        if(localStorage.getItem('user') !=null) {
+    ) { 
+        let userFromStorage = localStorage.getItem('user');
+        if(userFromStorage && userFromStorage !== "null" ) {
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user'))[0]);
         this.user = this.userSubject.asObservable();
         }else{
@@ -33,10 +34,11 @@ export class AccountService {
         return this.http.get<User[]>(`${environment.apiUrl}users?email=`+username)
             .pipe(map(user => {
 
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-                if(user.length >0)
+                if(user && user.length >0){
                 this.userSubject.next(user[0]);
+                localStorage.setItem('user', JSON.stringify(user));
+
+                }
                 return user;
             }));
     }
@@ -50,18 +52,11 @@ export class AccountService {
 
 
     getPostsByUser(userId) {
-        return this.http.get<User[]>(`${environment.apiUrl}posts?userId=`+userId);
+        return this.http.get<any>(`${environment.apiUrl}posts?userId=`+userId);
     }
 
     getCommentsByPostId(postId) {
-        return this.http.get<User[]>(`${environment.apiUrl}comments?postId=`+postId );
+        return this.http.get<any>(`${environment.apiUrl}comments?postId=`+postId );
     }
 
-    getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
-    }
-
-    
-
-  
-}
+  }

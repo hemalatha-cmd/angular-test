@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { UsersRoutingModule } from './users-routing.module';
+import { PostsRoutingModule } from './posts-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 
@@ -10,7 +10,7 @@ import { ListComponent } from './list.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        UsersRoutingModule
+        PostsRoutingModule
     ],
     declarations: [
         LayoutComponent,
@@ -18,4 +18,4 @@ import { ListComponent } from './list.component';
         
     ]
 })
-export class UsersModule { }
+export class PostsModule { }

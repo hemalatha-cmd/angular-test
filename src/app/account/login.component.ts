@@ -10,23 +10,20 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
 
     constructor(
         private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
         private alertService: AlertService
-    ) { }
-
-    ngOnInit() {
+    ) { 
         this.form = this.formBuilder.group({
             username: ['', Validators.required]
         });
+    }
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    ngOnInit() {
+      
     }
 
     // convenience getter for easy access to form fields
@@ -49,7 +46,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     if(data.length > 0){
-                      this.router.navigate(['/users']);
+                      this.router.navigate(['/posts']);
                     } else {
                         this.alertService.error('Invalid email.');
                     }

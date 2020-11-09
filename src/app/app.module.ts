@@ -5,10 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';
 
 @NgModule({
     imports: [
@@ -19,12 +17,7 @@ import { HomeComponent } from './home';
     ],
     declarations: [
         AppComponent,
-        AlertComponent,
-        HomeComponent
-    ],
-    providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+        AlertComponent
     ],
     bootstrap: [AppComponent]
 })
