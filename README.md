@@ -1,5 +1,5 @@
-# angular-9-registration-login-example
+1. Run `npm install` to download the packages
 
-Angular 9 - User Registration and Login Example
+2. Run `npm test` to run the test cases.
 
-Full tutorial with example available at https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial
+3. Run `npm start` to start the server and open http://localhost:4200
